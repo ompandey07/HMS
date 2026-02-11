@@ -1,7 +1,8 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 
 
 def index_page(request):
-    return HttpResponse("Welcome to the Hospital Management System!")
+    return render(request, 'Base/index.html')

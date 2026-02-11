@@ -1,0 +1,860 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Bookly - Complete Hotel Management System</title>
+    <meta name="description" content="Bookly is a complete web-based hotel management software for room reservations, check-in/check-out, restaurant management, and comprehensive MIS reports.">
+    <meta name="keywords" content="hotel management, room booking, reservation system, restaurant management, hotel software">
+    <meta name="author" content="Bookly">
+    <meta name="theme-color" content="#0ea5e9">
+    
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'Logo/favicon.ico' %}" type="image/x-icon">
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&family=Kaushan+Script&display=swap" rel="stylesheet">
+    
+    <!-- Agustina Font -->
+    <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{% static 'Assests/Bookly/styles.css' %}">
+</head>
+<body class="loading">
+    <!-- Floating Animated Dots -->
+    <div class="floating-dots-container">
+        <div class="floating-dot dot-1"></div>
+        <div class="floating-dot dot-2"></div>
+        <div class="floating-dot dot-3"></div>
+        <div class="floating-dot dot-4"></div>
+        <div class="floating-dot dot-5"></div>
+        <div class="floating-dot dot-6"></div>
+        <div class="floating-dot dot-7"></div>
+        <div class="floating-dot dot-8"></div>
+        <div class="floating-dot dot-9"></div>
+        <div class="floating-dot dot-10"></div>
+        <div class="floating-dot dot-11"></div>
+        <div class="floating-dot dot-12"></div>
+    </div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <span class="preloader-name">Bookly</span>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <span class="nav-logo-text agustina-font">Bookly</span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <div class="nav-links" id="navLinks">
+                <!-- Close Button for Mobile -->
+                <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">
+                    <i class="ri-close-line"></i>
+                </button>
+                
+                <!-- Mobile Brand -->
+                <div class="nav-mobile-brand">
+                    <span class="agustina-font">Bookly</span>
+                </div>
+                
+                <a href="#about" class="nav-link">
+                    <i data-lucide="info"></i>
+                    About
+                </a>
+                <a href="#rooms" class="nav-link">
+                    <i data-lucide="bed-double"></i>
+                    Rooms
+                </a>
+                <a href="#restaurant" class="nav-link">
+                    <i data-lucide="utensils"></i>
+                    Restaurant
+                </a>
+                <a href="#features" class="nav-link">
+                    <i data-lucide="sparkles"></i>
+                    Features
+                </a>
+                <a href="#reports" class="nav-link">
+                    <i data-lucide="bar-chart-3"></i>
+                    Reports
+                </a>
+                <a href="accounts/register" class="nav-cta">
+                    <i data-lucide="rocket"></i>
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Hamburger Button -->
+            <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-bg-left"></div>
+            <div class="hero-bg-right"></div>
+        </div>
+        <div class="hero-grid"></div>
+
+        <div class="hero-container">
+            <!-- Left Side: Image, Title, Slogan -->
+            <div class="hero-content">
+                <!-- Hero Image with Paint Effect -->
+                <div class="hero-logo-container">
+                    <img src="{% static 'Logo/WithoutBg.png' %}" alt="Bookly Hotel Management" class="hero-logo">
+
+                    <!-- Paint Drip Effect -->
+                    <div class="paint-drips">
+                        <div class="paint-drip"></div>
+                        <div class="paint-drip"></div>
+                        <div class="paint-drip"></div>
+                        <div class="paint-drip"></div>
+                        <div class="paint-drip"></div>
+                        <div class="paint-drip"></div>
+                        <div class="paint-drip"></div>
+                    </div>
+
+                    <!-- Paint Splatter Dots -->
+                    <div class="paint-splatter paint-splatter-1"></div>
+                    <div class="paint-splatter paint-splatter-2"></div>
+                    <div class="paint-splatter paint-splatter-3"></div>
+                    <div class="paint-splatter paint-splatter-4"></div>
+                    <div class="paint-splatter paint-splatter-5"></div>
+                </div>
+
+                <!-- Title below Image -->
+                <h1 class="hero-title kaushan-font">Bookly</h1>
+
+                <!-- Slogan below Title -->
+                <p class="hero-slogan">"Complete Hotel Management, Simplified."</p>
+
+                <!-- Hero CTA Buttons -->
+                <div class="hero-buttons">
+                    <a href="accounts/register" class="hero-btn hero-btn-primary">
+                        <i data-lucide="rocket"></i>
+                        Get Started Free
+                    </a>
+                    <a href="#about" class="hero-btn hero-btn-secondary">
+                        <i data-lucide="play-circle"></i>
+                        Learn More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: 3D Dashboard -->
+            <div class="dashboard-wrapper">
+                <div class="dashboard-widget">
+                    <div class="dashboard-edge-left"></div>
+                    <div class="dashboard-edge-bottom"></div>
+                    <div class="dashboard-grid"></div>
+                    <div class="dashboard-connections">
+                        <div class="connection-dot"></div>
+                        <div class="connection-dot"></div>
+                        <div class="connection-dot"></div>
+                        <div class="connection-dot"></div>
+                        <div class="connection-dot"></div>
+                    </div>
+
+                    <!-- Real-time Booking Notifications -->
+                    <div class="dashboard-transactions">
+                        <div class="transaction-notification">
+                            <div class="transaction-icon checkin">
+                                <i class="ri-login-box-line"></i>
+                            </div>
+                            <span class="transaction-text">Check-In</span>
+                            <span class="transaction-amount checkin">Room 205</span>
+                        </div>
+                        <div class="transaction-notification">
+                            <div class="transaction-icon checkout">
+                                <i class="ri-logout-box-line"></i>
+                            </div>
+                            <span class="transaction-text">Check-Out</span>
+                            <span class="transaction-amount checkout">Room 102</span>
+                        </div>
+                        <div class="transaction-notification">
+                            <div class="transaction-icon booking">
+                                <i class="ri-calendar-check-line"></i>
+                            </div>
+                            <span class="transaction-text">New Booking</span>
+                            <span class="transaction-amount booking">Suite 401</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-header">
+                        <span class="dashboard-title">Hotel Dashboard</span>
+                        <div class="dashboard-live">
+                            <span class="dashboard-live-dot"></span>
+                            Live
+                        </div>
+                    </div>
+
+                    <div class="dashboard-stats">
+                        <div class="stat-box">
+                            <div class="stat-value blue">48</div>
+                            <div class="stat-label">Total Rooms</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value green">32</div>
+                            <div class="stat-label">Occupied</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value orange">16</div>
+                            <div class="stat-label">Available</div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-chart">
+                        <svg class="chart-line" viewBox="0 0 400 80" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="chartGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#0ea5e9"/>
+                                    <stop offset="50%" style="stop-color:#06b6d4"/>
+                                    <stop offset="100%" style="stop-color:#14b8a6"/>
+                                </linearGradient>
+                                <linearGradient id="chartAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:0.2"/>
+                                    <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0"/>
+                                </linearGradient>
+                            </defs>
+                            <path class="chart-area" d="M0,80 L0,56 Q50,40 100,50 T200,30 T300,45 T400,16 L400,80 Z"/>
+                            <path class="chart-path" d="M0,56 Q50,40 100,50 T200,30 T300,45 T400,16"/>
+                        </svg>
+                        <div class="chart-dots">
+                            <div class="chart-dot"></div>
+                            <div class="chart-dot"></div>
+                            <div class="chart-dot"></div>
+                            <div class="chart-dot"></div>
+                            <div class="chart-dot"></div>
+                            <div class="chart-dot"></div>
+                            <div class="chart-dot"></div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-progress">
+                        <div class="progress-item">
+                            <div class="progress-icon blue">
+                                <i class="ri-hotel-bed-line"></i>
+                            </div>
+                            <div class="progress-content">
+                                <div class="progress-header">
+                                    <span class="progress-label">Room Occupancy</span>
+                                    <span class="progress-value">67%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill blue" style="--progress: 67%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-icon cyan">
+                                <i class="ri-restaurant-line"></i>
+                            </div>
+                            <div class="progress-content">
+                                <div class="progress-header">
+                                    <span class="progress-label">Restaurant Tables</span>
+                                    <span class="progress-value">45%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill cyan" style="--progress: 45%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-icon green">
+                                <i class="ri-money-dollar-circle-line"></i>
+                            </div>
+                            <div class="progress-content">
+                                <div class="progress-header">
+                                    <span class="progress-label">Today's Revenue</span>
+                                    <span class="progress-value">$12,450</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill green" style="--progress: 82%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section section-alt" id="about">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-image">
+                    <img src="{% static 'Base/Complete Hotel Management Solution.png' %}" alt="About Bookly" class="fade-in-image">
+                </div>
+                
+                <div class="content-text">
+                    <div class="content-label">
+                        <i data-lucide="info"></i>
+                        About Bookly
+                    </div>
+                    <h2 class="content-title">Complete Hotel Management Solution</h2>
+                    <p class="content-description">
+                        Bookly is a comprehensive web-based hotel management software designed to streamline 
+                        all your hotel operations. From room reservations to restaurant billing, 
+                        inventory management to detailed MIS reports – everything in one powerful platform.
+                    </p>
+                    <div class="content-list">
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Real-time room availability and booking management</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Seamless check-in and check-out process</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Integrated restaurant and bar management</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Comprehensive inventory and purchase tracking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Management Section -->
+    <section class="section" id="rooms">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="bed-double"></i>
+                    Room Management
+                </div>
+                <h2 class="section-title">Complete Room Operations</h2>
+                <p class="section-subtitle">
+                    Manage room inquiries, reservations, check-ins, and check-outs 
+                    with our intuitive and powerful room management system.
+                </p>
+            </div>
+            
+            <!-- Room Inquiry & Reservation -->
+            <div class="content-grid" style="margin-bottom: 80px;">
+                <div class="content-image">
+                    <img src="{% static 'Base/Effortless Room Booking.png' %}" alt="Room Reservation" class="fade-in-image">
+                </div>
+                
+                <div class="content-text">
+                    <div class="content-label">
+                        <i data-lucide="calendar-check"></i>
+                        Inquiry & Reservation
+                    </div>
+                    <h2 class="content-title">Effortless Room Booking</h2>
+                    <p class="content-description">
+                        Handle room inquiries and reservations with ease. Get complete information 
+                        of available and occupied rooms at any time from the reception dashboard.
+                    </p>
+                    <div class="content-list">
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Room booking and inquiry management</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Real-time room availability status</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Room setup and labeling configuration</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Advance booking with deposit collection</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Guest ledger and identity management</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Customizable room tariff setup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Check-in & Check-out -->
+            <div class="content-grid reverse">
+                <div class="content-image">
+                    <img src="{% static 'Base/Smooth Guest Experience.png' %}" alt="Check-in Check-out" class="fade-in-image">
+                </div>
+                
+                <div class="content-text">
+                    <div class="content-label">
+                        <i data-lucide="log-in"></i>
+                        Check-In & Check-Out
+                    </div>
+                    <h2 class="content-title">Smooth Guest Experience</h2>
+                    <p class="content-description">
+                        Streamline the entire check-in and check-out process. Generate bills, 
+                        manage services, and ensure a seamless experience for your guests.
+                    </p>
+                    <div class="content-list">
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Record check-in time and date</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Advance collection with receipt generation</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Room service and laundry billing</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Generate comprehensive room bills</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Extra bed and amenity management</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Check-in/check-out reports</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurant & Bar Section -->
+    <section class="section section-alt" id="restaurant">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="utensils"></i>
+                    Bar & Restaurant
+                </div>
+                <h2 class="section-title">Complete F&B Management</h2>
+                <p class="section-subtitle">
+                    Manage your restaurant and bar operations efficiently with table management, 
+                    billing, KOT handling, and comprehensive reporting.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="content-image">
+                    <img src="{% static 'Base/Streamlined F&B Services.png' %}" alt="Restaurant Management" class="fade-in-image">
+                </div>
+                
+                <div class="content-text">
+                    <div class="content-label">
+                        <i data-lucide="chef-hat"></i>
+                        Restaurant Operations
+                    </div>
+                    <h2 class="content-title">Streamlined F&B Services</h2>
+                    <p class="content-description">
+                        From table management to final billing, handle all restaurant and bar 
+                        operations seamlessly. Support for multiple menus, KOT management, 
+                        and various payment modes.
+                    </p>
+                    <div class="content-list">
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Table and item master management</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Multiple price menus and complementary items</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>KOT management with pending order tracking</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Cashier-wise cash management</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Service tax and VAT calculation</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Transfer bills to room accounts</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Separate bar and restaurant management</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Daily collection flash reports</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="sparkles"></i>
+                    Features
+                </div>
+                <h2 class="section-title">Everything You Need to Manage Your Hotel</h2>
+                <p class="section-subtitle">
+                    Powerful features designed to make hotel management efficient, 
+                    organized, and hassle-free.
+                </p>
+            </div>
+            
+            <div class="features-container">
+                <div class="feature-tag color-1">
+                    <i data-lucide="bed-double"></i>
+                    <span>ROOM BOOKING</span>
+                </div>
+                <div class="feature-tag color-2">
+                    <i data-lucide="calendar-check"></i>
+                    <span>RESERVATIONS</span>
+                </div>
+                <div class="feature-tag color-3">
+                    <i data-lucide="log-in"></i>
+                    <span>CHECK-IN</span>
+                </div>
+                <div class="feature-tag color-4">
+                    <i data-lucide="log-out"></i>
+                    <span>CHECK-OUT</span>
+                </div>
+                <div class="feature-tag color-5">
+                    <i data-lucide="utensils"></i>
+                    <span>RESTAURANT</span>
+                </div>
+                <div class="feature-tag color-6">
+                    <i data-lucide="wine"></i>
+                    <span>BAR MANAGEMENT</span>
+                </div>
+                <div class="feature-tag color-7">
+                    <i data-lucide="receipt"></i>
+                    <span>BILLING</span>
+                </div>
+                <div class="feature-tag color-8">
+                    <i data-lucide="users"></i>
+                    <span>GUEST MANAGEMENT</span>
+                </div>
+                <div class="feature-tag color-1">
+                    <i data-lucide="package"></i>
+                    <span>INVENTORY</span>
+                </div>
+                <div class="feature-tag color-2">
+                    <i data-lucide="shopping-cart"></i>
+                    <span>PURCHASES</span>
+                </div>
+                <div class="feature-tag color-3">
+                    <i data-lucide="bar-chart-3"></i>
+                    <span>MIS REPORTS</span>
+                </div>
+                <div class="feature-tag color-4">
+                    <i data-lucide="credit-card"></i>
+                    <span>PAYMENTS</span>
+                </div>
+                <div class="feature-tag color-5">
+                    <i data-lucide="shirt"></i>
+                    <span>LAUNDRY</span>
+                </div>
+                <div class="feature-tag color-6">
+                    <i data-lucide="concierge-bell"></i>
+                    <span>ROOM SERVICE</span>
+                </div>
+                <div class="feature-tag color-7">
+                    <i data-lucide="shield-check"></i>
+                    <span>SECURITY</span>
+                </div>
+                <div class="feature-tag color-8">
+                    <i data-lucide="file-text"></i>
+                    <span>COMPLIANCE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stores & Purchases Section -->
+    <section class="section section-alt" id="stores">
+        <div class="container">
+            <div class="content-grid reverse">
+                <div class="content-image">
+                    <img src="{% static 'Base/Inventory & Purchase Management.png' %}" alt="Stores & Purchases" class="fade-in-image">
+                </div>
+                
+                <div class="content-text">
+                    <div class="content-label">
+                        <i data-lucide="package"></i>
+                        Stores & Purchases
+                    </div>
+                    <h2 class="content-title">Inventory & Purchase Management</h2>
+                    <p class="content-description">
+                        Keep track of your inventory across multiple locations. Manage purchase 
+                        orders, track stock levels, and generate comprehensive inventory reports.
+                    </p>
+                    <div class="content-list">
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Complete item and inventory management</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Purchase order maintenance</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Inter-location stock transfers</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Location-wise stock reports</span>
+                        </div>
+                        <div class="content-list-item">
+                            <i data-lucide="check-circle"></i>
+                            <span>Detailed inventory reports</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MIS Reports Section -->
+    <section class="section" id="reports">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="bar-chart-3"></i>
+                    MIS Reports
+                </div>
+                <h2 class="section-title">Comprehensive Reporting System</h2>
+                <p class="section-subtitle">
+                    Get detailed insights into every aspect of your hotel operations 
+                    with our extensive MIS reporting module.
+                </p>
+            </div>
+            
+            <div class="reports-grid">
+                <div class="report-card">
+                    <div class="report-icon blue">
+                        <i class="ri-file-list-3-line"></i>
+                    </div>
+                    <h3 class="report-title">Room Reports</h3>
+                    <ul class="report-list">
+                        <li>Booked room details</li>
+                        <li>Room reservation report</li>
+                        <li>Room register</li>
+                        <li>Bill settlement report</li>
+                        <li>Empty room details</li>
+                    </ul>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-icon cyan">
+                        <i class="ri-user-3-line"></i>
+                    </div>
+                    <h3 class="report-title">Guest Reports</h3>
+                    <ul class="report-list">
+                        <li>Current guest list</li>
+                        <li>Present & past guest details</li>
+                        <li>Billed & settled guests</li>
+                        <li>Complementary report</li>
+                        <li>Guest ledger information</li>
+                    </ul>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-icon green">
+                        <i class="ri-money-dollar-circle-line"></i>
+                    </div>
+                    <h3 class="report-title">Financial Reports</h3>
+                    <ul class="report-list">
+                        <li>Advance booking register</li>
+                        <li>Daily collection report</li>
+                        <li>Room bill settlement</li>
+                        <li>Service timing report</li>
+                        <li>Maintenance expenses</li>
+                    </ul>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-icon orange">
+                        <i class="ri-settings-3-line"></i>
+                    </div>
+                    <h3 class="report-title">Operations Reports</h3>
+                    <ul class="report-list">
+                        <li>Room shifting records</li>
+                        <li>Room cancellation report</li>
+                        <li>Rooms under maintenance</li>
+                        <li>Statutory compliance</li>
+                        <li>Security reports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section section-alt" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="settings"></i>
+                    How It Works
+                </div>
+                <h2 class="section-title">Get Started in Minutes</h2>
+                <p class="section-subtitle">
+                    Setting up Bookly is quick and easy. Follow these simple steps 
+                    to transform your hotel operations.
+                </p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <i class="ri-settings-4-line"></i>
+                    </div>
+                    <h3 class="step-title">Setup Your Hotel</h3>
+                    <p class="step-description">
+                        Configure your rooms, tariffs, restaurant menus, and user roles. 
+                        Customize Bookly to match your hotel's specific needs.
+                    </p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <i class="ri-calendar-check-line"></i>
+                    </div>
+                    <h3 class="step-title">Start Booking</h3>
+                    <p class="step-description">
+                        Begin accepting reservations and walk-in guests. Manage check-ins, 
+                        check-outs, and all guest services from one dashboard.
+                    </p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <i class="ri-line-chart-line"></i>
+                    </div>
+                    <h3 class="step-title">Track & Grow</h3>
+                    <p class="step-description">
+                        Monitor your hotel's performance with real-time analytics and 
+                        detailed reports. Make data-driven decisions to grow your business.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial/Quote Section -->
+    <section class="section">
+        <div class="container">
+            <div class="motivation-quote">
+                <div class="motivation-quote-icon">
+                    <i class="ri-double-quotes-l"></i>
+                </div>
+                <p class="motivation-quote-text">
+                    "A well-managed hotel is one where every guest feels like the most important person in the building."
+                </p>
+                <span class="motivation-quote-author">— Hospitality Excellence</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Transform Your Hotel Operations?</h2>
+            <p class="cta-description">
+                Join hundreds of hotels who have streamlined their operations 
+                and improved guest satisfaction with Bookly.
+            </p>
+            <div class="cta-buttons">
+                <a href="accounts/register" class="cta-btn cta-btn-primary">
+                    <i data-lucide="rocket"></i>
+                    Get Started Free
+                </a>
+                <a href="#" class="cta-btn cta-btn-secondary">
+                    <i data-lucide="phone"></i>
+                    Request Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="#" class="footer-brand">
+                <span class="footer-brand-text agustina-font">Bookly</span>
+            </a>
+            
+            <div class="footer-social">
+                <a href="#" class="footer-social-link" aria-label="Facebook">
+                    <i class="ri-facebook-fill"></i>
+                </a>
+                <a href="#" class="footer-social-link" aria-label="Instagram">
+                    <i class="ri-instagram-line"></i>
+                </a>
+                <a href="#" class="footer-social-link" aria-label="Twitter">
+                    <i class="ri-twitter-x-line"></i>
+                </a>
+                <a href="#" class="footer-social-link" aria-label="LinkedIn">
+                    <i class="ri-linkedin-fill"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-copyright" id="footerCopyright"></div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'Assests/Bookly/app.js' %}"></script>
+    <script src="{% static 'Assests/Bookly/Console.js' %}"></script>
+</body>
+</html>
