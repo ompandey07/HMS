@@ -1,10 +1,14 @@
-<div align="center">
-
-<img src="static/Logo/WithoutBg.png" alt="Bookly Logo" width="180"/>
-
-# 🏨 Bookly — Hotel Management System
+# Bookly
 
 **Complete Hotel Management, Simplified.**
+
+Bookly is a comprehensive web-based hotel management system designed to streamline all your hotel operations. From room reservations and guest check-in/check-out to restaurant management, inventory tracking, and detailed MIS reports — everything in one powerful, integrated platform.
+
+---
+
+<div align="center">
+
+<img src="static/Logo/WithoutBg.png" alt="Bookly Logo" width="220"/>
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Django](https://img.shields.io/badge/Django-4.x-092E20?style=for-the-badge&logo=django&logoColor=white)](https://djangoproject.com)
