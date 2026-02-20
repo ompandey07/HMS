@@ -1,0 +1,56 @@
+# ==============================
+# Python
+# ==============================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ==============================
+# Django
+# ==============================
+
+# Ignore all migrations files but keep the folder
+**/migrations/*
+!**/migrations/__init__.py
+
+# Ignore SQLite database
+db.sqlite3
+*.sqlite3
+
+# ==============================
+# Environment Variables
+# ==============================
+.env
+.env.*
+*.env
+
+# ==============================
+# Virtual Environment
+# ==============================
+venv/
+env/
+ENV/
+.venv/
+
+# ==============================
+# Static & Media (optional)
+# ==============================
+staticfiles/
+media/
+
+# ==============================
+# Logs
+# ==============================
+*.log
+
+# ==============================
+# IDE / Editor
+# ==============================
+.vscode/
+.idea/
+
+# ==============================
+# OS Files
+# ==============================
+.DS_Store
+Thumbs.db

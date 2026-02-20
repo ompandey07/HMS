@@ -6,7 +6,8 @@ from . import views
 
 urlpatterns = [
     
-        path('', views.index_page, name='index'),
+    path('', views.index_page, name='index'),
+    path('dashboard/', views.dashboard_page, name='dashboard'),
 
         
 ]

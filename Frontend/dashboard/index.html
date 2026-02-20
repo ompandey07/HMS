@@ -1,0 +1,1300 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Dashboard - Bookly Hotel Management</title>
+    <meta name="description" content="Manage your hotel operations with Bookly dashboard.">
+    <meta name="theme-color" content="#0ea5e9">
+    
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <link rel="shortcut icon" href="{% static 'Logo/favicon.ico' %}" type="image/x-icon">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-script: 'Kaushan Script', cursive;
+            --font-agustina: 'Agustina', cursive;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-dark: #0f172a;
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --text-white: #ffffff;
+            
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            
+            --accent-primary: #0ea5e9;
+            --accent-secondary: #06b6d4;
+            --accent-light: #38bdf8;
+            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #14b8a6 100%);
+            
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+            --radius-2xl: 28px;
+            --radius-full: 9999px;
+            
+            --transition-base: 200ms ease;
+            --transition-slow: 300ms ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        * {
+            scrollbar-width: none;
+        }
+
+        .agustina-font {
+            font-family: 'Agustina', cursive !important;
+        }
+
+        /* Floating Dots Background */
+        .floating-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-dot {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatDot 40s infinite ease-in-out;
+        }
+
+        .floating-dot.dot-1 {
+            width: 10px;
+            height: 10px;
+            background: var(--accent-primary);
+            top: 15%;
+            left: 8%;
+            animation-duration: 50s;
+        }
+
+        .floating-dot.dot-2 {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-secondary);
+            top: 60%;
+            right: 10%;
+            animation-duration: 45s;
+            animation-delay: -5s;
+        }
+
+        .floating-dot.dot-3 {
+            width: 12px;
+            height: 12px;
+            background: #14b8a6;
+            bottom: 20%;
+            left: 15%;
+            animation-duration: 55s;
+            animation-delay: -10s;
+        }
+
+        .floating-dot.dot-4 {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            top: 30%;
+            right: 20%;
+            animation-duration: 48s;
+            animation-delay: -15s;
+        }
+
+        .floating-dot.dot-5 {
+            width: 9px;
+            height: 9px;
+            background: var(--warning);
+            bottom: 40%;
+            right: 5%;
+            animation-duration: 52s;
+            animation-delay: -8s;
+        }
+
+        @keyframes floatDot {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+            50% {
+                transform: translate(20px, 50px) scale(0.9);
+            }
+            75% {
+                transform: translate(-30px, 25px) scale(1.05);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 0 24px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-brand {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo-text {
+            font-family: 'Agustina', cursive !important;
+            font-size: 28px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* User Profile Dropdown */
+        .user-profile {
+            position: relative;
+        }
+
+        .user-profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px 8px 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .user-profile-btn:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-avatar-initials {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .user-role {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .user-dropdown-icon {
+            color: var(--text-muted);
+            transition: transform var(--transition-base);
+        }
+
+        .user-dropdown-icon i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .user-profile.active .user-dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Menu */
+        .user-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 240px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-base);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .user-profile.active .user-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+        }
+
+        .dropdown-hotel-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dropdown-hotel-name i {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-primary);
+        }
+
+        .dropdown-email {
+            font-size: 12px;
+            color: var(--text-muted);
+            word-break: break-all;
+        }
+
+        .dropdown-menu {
+            padding: 8px;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .dropdown-item i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .dropdown-item.logout {
+            color: var(--error);
+        }
+
+        .dropdown-item.logout:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: var(--border-light);
+            margin: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            margin-bottom: 40px;
+        }
+
+        .welcome-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        .welcome-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .welcome-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(14, 165, 233, 0.3);
+        }
+
+        .welcome-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .welcome-avatar-initials {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .welcome-text {
+            flex: 1;
+        }
+
+        .welcome-greeting {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .welcome-title {
+            font-family: var(--font-heading);
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .welcome-title span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .welcome-subtitle i {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-primary);
+        }
+
+        .welcome-meta {
+            display: flex;
+            gap: 24px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .welcome-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .welcome-meta-item i {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 28px;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-primary);
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, transparent 50%, rgba(14, 165, 233, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .stat-icon.blue {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent-primary);
+        }
+
+        .stat-icon.green {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .stat-icon.orange {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--warning);
+        }
+
+        .stat-icon.cyan {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent-secondary);
+        }
+
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+        }
+
+        .stat-trend.up {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .stat-trend.down {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+        }
+
+        .stat-trend i {
+            width: 14px;
+            height: 14px;
+        }
+
+        .stat-value {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-primary);
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .action-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            padding: 28px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .action-card:hover {
+            background: var(--bg-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .action-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            transition: transform var(--transition-base);
+        }
+
+        .action-card:hover .action-icon {
+            transform: scale(1.1);
+        }
+
+        .action-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-primary);
+            color: white;
+            padding: 16px 28px;
+            border-radius: var(--radius-full);
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10000;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-xl);
+            max-width: calc(100vw - 40px);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            background: var(--success);
+        }
+
+        .toast.error {
+            background: var(--error);
+        }
+
+        .toast-icon {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .toast-message {
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        /* Logout Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform var(--transition-base);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--error);
+            font-size: 32px;
+        }
+
+        .modal-title {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .modal-message {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .modal-btn i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .modal-btn.cancel {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+        }
+
+        .modal-btn.cancel:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .modal-btn.confirm {
+            background: var(--error);
+            border: none;
+            color: white;
+        }
+
+        .modal-btn.confirm:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                height: 64px;
+            }
+
+            .nav-logo-text {
+                font-size: 24px;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .user-profile-btn {
+                padding: 6px;
+            }
+
+            .main-content {
+                padding: 24px 16px;
+            }
+
+            .welcome-card {
+                padding: 28px;
+            }
+
+            .welcome-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .welcome-avatar {
+                width: 80px;
+                height: 80px;
+            }
+
+            .welcome-avatar-initials {
+                font-size: 28px;
+            }
+
+            .welcome-subtitle {
+                justify-content: center;
+            }
+
+            .welcome-meta {
+                justify-content: center;
+            }
+
+            .stat-card {
+                padding: 22px;
+            }
+
+            .stat-value {
+                font-size: 26px;
+            }
+
+            .quick-actions {
+                padding: 24px;
+            }
+
+            .actions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .action-card {
+                padding: 20px 14px;
+            }
+
+            .action-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+
+            .action-label {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 22px;
+            }
+
+            .stat-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+
+            .actions-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Dots Background -->
+    <div class="floating-dots">
+        <div class="floating-dot dot-1"></div>
+        <div class="floating-dot dot-2"></div>
+        <div class="floating-dot dot-3"></div>
+        <div class="floating-dot dot-4"></div>
+        <div class="floating-dot dot-5"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <span class="nav-logo-text agustina-font">Bookly</span>
+            </a>
+
+            <div class="nav-right">
+                <!-- User Profile Dropdown -->
+                <div class="user-profile" id="userProfile">
+                    <button class="user-profile-btn" id="userProfileBtn">
+                        <div class="user-avatar">
+                            {% if hotel and hotel.hotel_logo %}
+                                <img src="{{ hotel.hotel_logo.url }}" alt="Hotel Logo">
+                            {% else %}
+                                <span class="user-avatar-initials">{{ hotel.hotel_name|slice:":2"|upper|default:"H" }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">{{ hotel.hotel_name|default:"Hotel" }}</span>
+                            <span class="user-role">Administrator</span>
+                        </div>
+                        <span class="user-dropdown-icon">
+                            <i data-lucide="chevron-down"></i>
+                        </span>
+                    </button>
+
+                    <div class="user-dropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-hotel-name">
+                                <i data-lucide="building-2"></i>
+                                {{ hotel.hotel_name|default:"Hotel" }}
+                            </div>
+                            <div class="dropdown-email">{{ user.email }}</div>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">
+                                <i data-lucide="settings"></i>
+                                Settings
+                            </a>
+                            <a href="{% url 'update_profile' %}" class="dropdown-item">
+                                <i data-lucide="user"></i>
+                                Profile
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i data-lucide="help-circle"></i>
+                                Help & Support
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item logout" id="logoutBtn">
+                                <i data-lucide="log-out"></i>
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="welcome-card">
+                <div class="welcome-content">
+                    <div class="welcome-avatar">
+                        {% if hotel and hotel.hotel_logo %}
+                            <img src="{{ hotel.hotel_logo.url }}" alt="Hotel Logo">
+                        {% else %}
+                            <span class="welcome-avatar-initials">{{ hotel.hotel_name|slice:":2"|upper|default:"H" }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="welcome-text">
+                        <p class="welcome-greeting">Welcome back</p>
+                        <h1 class="welcome-title">
+                            Hello, <span>{{ hotel.hotel_name|default:"Hotel Admin" }}!</span>
+                        </h1>
+                        <p class="welcome-subtitle">
+                            <i data-lucide="sparkles"></i>
+                            Here's what's happening with your hotel today
+                        </p>
+                        <div class="welcome-meta">
+                            <div class="welcome-meta-item">
+                                <i data-lucide="mail"></i>
+                                {{ user.email }}
+                            </div>
+                            <div class="welcome-meta-item">
+                                <i data-lucide="phone"></i>
+                                {{ hotel.mobile_number|default:"N/A" }}
+                            </div>
+                            <div class="welcome-meta-item">
+                                <i data-lucide="calendar"></i>
+                                Member since {{ hotel.created_at|date:"M Y"|default:"N/A" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Grid -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon blue">
+                        <i class="ri-hotel-bed-line"></i>
+                    </div>
+                    <div class="stat-trend up">
+                        <i data-lucide="trending-up"></i>
+                        +12%
+                    </div>
+                </div>
+                <div class="stat-value">48</div>
+                <div class="stat-label">Total Rooms</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon green">
+                        <i class="ri-user-line"></i>
+                    </div>
+                    <div class="stat-trend up">
+                        <i data-lucide="trending-up"></i>
+                        +8%
+                    </div>
+                </div>
+                <div class="stat-value">32</div>
+                <div class="stat-label">Occupied Rooms</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon orange">
+                        <i class="ri-calendar-check-line"></i>
+                    </div>
+                    <div class="stat-trend up">
+                        <i data-lucide="trending-up"></i>
+                        +15%
+                    </div>
+                </div>
+                <div class="stat-value">12</div>
+                <div class="stat-label">Today's Bookings</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon cyan">
+                        <i class="ri-money-dollar-circle-line"></i>
+                    </div>
+                    <div class="stat-trend up">
+                        <i data-lucide="trending-up"></i>
+                        +22%
+                    </div>
+                </div>
+                <div class="stat-value">$12.4K</div>
+                <div class="stat-label">Today's Revenue</div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <h2 class="section-title">
+                <i data-lucide="zap"></i>
+                Quick Actions
+            </h2>
+            <div class="actions-grid">
+                <a href="#" class="action-card">
+                    <div class="action-icon">
+                        <i class="ri-add-line"></i>
+                    </div>
+                    <span class="action-label">New Booking</span>
+                </a>
+                <a href="#" class="action-card">
+                    <div class="action-icon">
+                        <i class="ri-login-box-line"></i>
+                    </div>
+                    <span class="action-label">Check In</span>
+                </a>
+                <a href="#" class="action-card">
+                    <div class="action-icon">
+                        <i class="ri-logout-box-line"></i>
+                    </div>
+                    <span class="action-label">Check Out</span>
+                </a>
+                <a href="#" class="action-card">
+                    <div class="action-icon">
+                        <i class="ri-restaurant-line"></i>
+                    </div>
+                    <span class="action-label">Restaurant</span>
+                </a>
+                <a href="#" class="action-card">
+                    <div class="action-icon">
+                        <i class="ri-file-list-3-line"></i>
+                    </div>
+                    <span class="action-label">Reports</span>
+                </a>
+                <a href="#" class="action-card">
+                    <div class="action-icon">
+                        <i class="ri-settings-3-line"></i>
+                    </div>
+                    <span class="action-label">Settings</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="ri-logout-box-r-line"></i>
+            </div>
+            <h3 class="modal-title">Logout</h3>
+            <p class="modal-message">Are you sure you want to logout from your account?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" id="cancelLogout">
+                    <i data-lucide="x"></i>
+                    Cancel
+                </button>
+                <a href="{% url 'logout' %}" class="modal-btn confirm">
+                    <i data-lucide="log-out"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i data-lucide="check-circle" class="toast-icon"></i>
+        <span class="toast-message">Welcome back!</span>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Elements
+        const userProfile = document.getElementById('userProfile');
+        const userProfileBtn = document.getElementById('userProfileBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const logoutModal = document.getElementById('logoutModal');
+        const cancelLogout = document.getElementById('cancelLogout');
+        const toast = document.getElementById('toast');
+
+        // User Profile Dropdown Toggle
+        userProfileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userProfile.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userProfile.contains(e.target)) {
+                userProfile.classList.remove('active');
+            }
+        });
+
+        // Logout Button - Show Modal
+        logoutBtn.addEventListener('click', function() {
+            userProfile.classList.remove('active');
+            logoutModal.classList.add('active');
+        });
+
+        // Cancel Logout
+        cancelLogout.addEventListener('click', function() {
+            logoutModal.classList.remove('active');
+        });
+
+        // Close modal when clicking overlay
+        logoutModal.addEventListener('click', function(e) {
+            if (e.target === logoutModal) {
+                logoutModal.classList.remove('active');
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                logoutModal.classList.remove('active');
+                userProfile.classList.remove('active');
+            }
+        });
+
+        // Show Toast Function
+        function showToast(message, type = 'success') {
+            const toastIcon = toast.querySelector('.toast-icon');
+            const toastMessage = toast.querySelector('.toast-message');
+
+            let iconName = 'check-circle';
+            if (type === 'error') iconName = 'alert-circle';
+            else if (type === 'warning') iconName = 'alert-triangle';
+
+            toastIcon.setAttribute('data-lucide', iconName);
+            toastMessage.textContent = message;
+
+            toast.className = 'toast';
+            toast.classList.add(type);
+
+            lucide.createIcons();
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // Show welcome toast on page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                showToast('Welcome back, {{ hotel.hotel_name|default:"Admin" }}!', 'success');
+            }, 500);
+        });
+    </script>
+</body>
+</html>

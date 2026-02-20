@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # App routes with proper prefixes
-    # path('accounts/', include('accounts.routes')),
+    path('accounts/', include('accounts.routes')),
     # path('guests/', include('guests.routes')),
     # path('rooms/', include('rooms.routes')),
     # path('bookings/', include('bookings.routes')),

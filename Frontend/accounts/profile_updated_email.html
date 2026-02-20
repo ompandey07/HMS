@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Updated - Bookly</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4f7fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    
+    <!-- Preheader -->
+    <div style="display: none; font-size: 1px; color: #f4f7fa; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+        Your Bookly profile has been updated successfully.
+    </div>
+    
+    <!-- Email Wrapper -->
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f7fa;">
+        <tr>
+            <td style="padding: 40px 20px;">
+                
+                <!-- Email Container -->
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);">
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #0c4a6e 0%, #0e7490 50%, #0891b2 100%); padding: 40px; text-align: center;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto 15px auto;">
+                                <tr>
+                                    <td style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.15); border-radius: 50%; text-align: center; vertical-align: middle;">
+                                        <span style="font-size: 28px; color: #ffffff;">✅</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <h1 style="margin: 0; font-family: 'Georgia', serif; font-size: 32px; font-weight: 400; color: #ffffff;">
+                                Bookly
+                            </h1>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 40px;">
+                            <h2 style="margin: 0 0 15px 0; font-size: 24px; font-weight: 700; color: #0f172a; text-align: center;">
+                                Profile Updated Successfully!
+                            </h2>
+                            
+                            <p style="margin: 0 0 25px 0; font-size: 16px; color: #475569; text-align: center; line-height: 1.7;">
+                                Hi <strong>{{ hotel_name }}</strong>, your Bookly profile has been updated.
+                            </p>
+                            
+                            <!-- Updated Details Card -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 12px; border: 1px solid #bae6fd; margin-bottom: 25px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <h3 style="margin: 0 0 15px 0; font-size: 16px; font-weight: 600; color: #0c4a6e;">
+                                            📝 Updated Information
+                                        </h3>
+                                        
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            {% for field in updated_fields %}
+                                            <tr>
+                                                <td style="padding: 10px 0; border-bottom: 1px solid #bae6fd;">
+                                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                        <tr>
+                                                            <td style="width: 30px; vertical-align: middle;">
+                                                                <span style="font-size: 16px;">✓</span>
+                                                            </td>
+                                                            <td style="vertical-align: middle;">
+                                                                <p style="margin: 0; font-size: 15px; font-weight: 600; color: #0f172a;">{{ field }}</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Timestamp -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 25px;">
+                                <tr>
+                                    <td style="padding: 15px; background-color: #f8fafc; border-radius: 8px; text-align: center;">
+                                        <p style="margin: 0; font-size: 13px; color: #64748b;">
+                                            <strong>Updated on:</strong> {{ updated_at }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Security Note -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #fef3c7; border-radius: 10px; border-left: 4px solid #f59e0b; margin-bottom: 25px;">
+                                <tr>
+                                    <td style="padding: 16px 20px;">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td style="width: 30px; vertical-align: top;">
+                                                    <span style="font-size: 20px;">⚠️</span>
+                                                </td>
+                                                <td>
+                                                    <p style="margin: 0; font-size: 14px; color: #92400e; line-height: 1.5;">
+                                                        <strong>Wasn't you?</strong> If you didn't make these changes, please contact our support team immediately or change your password.
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- CTA Button -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto;">
+                                <tr>
+                                    <td style="border-radius: 10px; background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #14b8a6 100%);">
+                                        <a href="{{ login_url }}" target="_blank" style="display: inline-block; padding: 14px 35px; font-size: 15px; font-weight: 600; color: #ffffff; text-decoration: none; border-radius: 10px;">
+                                            View Your Profile
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="padding: 30px 40px; background: linear-gradient(135deg, #0c4a6e 0%, #0e7490 100%); text-align: center;">
+                            <p style="margin: 0 0 10px 0; font-family: 'Georgia', serif; font-size: 20px; color: #ffffff;">
+                                Bookly
+                            </p>
+                            <p style="margin: 0 0 10px 0; font-size: 12px; color: rgba(255,255,255,0.7);">
+                                Your Complete Hotel Management Solution
+                            </p>
+                            <p style="margin: 0; font-size: 11px; color: rgba(255,255,255,0.5);">
+                                © {{ current_year }} Bookly. All rights reserved.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

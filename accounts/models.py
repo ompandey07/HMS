@@ -1,25 +1,29 @@
 from django.db import models
-from django.utils import timezone
-import pytz
+from django.contrib.auth.models import User
+import os
 
-KATHMANDU_TZ = pytz.timezone('Asia/Kathmandu')
+def hotel_logo_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f'hotel_{instance.user.id}_logo.{ext}'
+    return os.path.join('hotel_logos', filename)
 
-class SubscriptionModel(models.Model):
-    sub_owner_name = models.CharField(max_length=255)
-    sub_address = models.TextField()
-    sub_pan = models.CharField(max_length=50)
-    sub_mobile_no = models.CharField(max_length=20)
-    sub_email_address = models.EmailField()
-    sub_is_active = models.BooleanField(default=False)
-    sub_starting_at = models.DateTimeField(default=timezone.now)
-    sub_ending_at = models.DateTimeField(default=timezone.now)
-
-    def save(self, *args, **kwargs):
-        if self.sub_starting_at:
-            self.sub_starting_at = self.sub_starting_at.astimezone(KATHMANDU_TZ)
-        if self.sub_ending_at:
-            self.sub_ending_at = self.sub_ending_at.astimezone(KATHMANDU_TZ)
-        super().save(*args, **kwargs)
-
+class Hotel(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='hotel')
+    hotel_name = models.CharField(max_length=200)
+    hotel_logo = models.ImageField(upload_to=hotel_logo_path, blank=True, null=True)
+    mobile_number = models.CharField(max_length=15)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = 'Hotel'
+        verbose_name_plural = 'Hotels'
+    
     def __str__(self):
-        return f"{self.sub_owner_name} - {self.sub_email_address}"
+        return self.hotel_name
+    
+    def get_logo_url(self):
+        if self.hotel_logo:
+            return self.hotel_logo.url
+        return None

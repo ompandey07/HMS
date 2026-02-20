@@ -3,7 +3,7 @@ Django settings for HMS project.
 """
 
 from pathlib import Path
-
+from decouple import config
 
 ##########################
 # BASE DIRECTORY
@@ -16,11 +16,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY SETTINGS
 ##########################
 
-SECRET_KEY = 'django-insecure-change-this-in-production'
+SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
 
 ##########################
@@ -28,10 +28,8 @@ ALLOWED_HOSTS = []
 ##########################
 
 INSTALLED_APPS = [
-    # THIRD PARTY APPS (TOP PRIORITY)
     'jazzmin',
 
-    # DJANGO DEFAULT APPS
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # PROJECT APPS
     'accounts',
     'guests',
     'rooms',
@@ -109,8 +106,12 @@ ASGI_APPLICATION = 'HMS.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
 
@@ -120,18 +121,10 @@ DATABASES = {
 ##########################
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 
@@ -140,11 +133,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ##########################
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Asia/Kathmandu'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -170,6 +160,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 ##########################
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+##########################
+# EMAIL SETTINGS
+##########################
+
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
 ##########################
